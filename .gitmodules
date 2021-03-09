@@ -1,0 +1,3 @@
+[submodule "SpektrumDocumentation"]
+	path = lib/SpektrumDocumentation
+	url = https://github.com/SpektrumRC/SpektrumDocumentation
