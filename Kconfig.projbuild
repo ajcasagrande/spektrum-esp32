@@ -1,0 +1,67 @@
+menu "Spektrum Device Configuration"
+  config SPM_LOCK_WAIT_MILLIS
+    int "Lock acquire max milliseconds"
+    default 10
+    help
+      Maximum amount of time milliseconds to wait for a lock to be acquired
+
+  config SPM_TX_BUF_LEN
+    int "I2C Slave Transmit Buffer Size"
+    default 1024
+    help
+      Amount of bytes to use for i2c slave transmit buffer. Note that this value may be restricted by the i2c driver,
+      and does not necessarily represent the size of your payloads.
+
+  config SPM_RX_BUF_LEN
+    int "I2C Slave Receive Buffer Size"
+    default 1024
+    help
+      Amount of bytes to use for i2c slave receive buffer. Note that this value may be restricted by the i2c driver,
+      and does not necessarily represent the size of incoming payloads.
+
+  config SPM_WRITE_WAIT_MS
+    int "I2C Write Wait (millis)"
+    default 22
+    help
+      Amount of milliseconds to wait for I2C bus to allow writing data.
+
+  config SPM_I2C_SDA
+    int "SDA Pin"
+    default 26
+    help
+      SDA pin for i2c bus connected to spektrum telemetry
+
+  config SPM_I2C_SCL
+    int "SCL Pin"
+    default 27
+    help
+      SDA pin for i2c bus connected to spektrum telemetry
+
+  config SPM_I2C_ADDRESS
+    int "I2C Address (Telemetry Device)"
+    default 0
+    help
+      i2c address of spektrum telemetry device the software is providing
+
+  choice SPM_I2C_NUM
+    prompt "I2C Number"
+    default SPM_I2C_NUM_1
+    help
+      Set the i2c to 0 or 1
+
+    config SPM_I2C_NUM_0
+      bool "I2C 0"
+    config SPM_I2C_NUM_1
+      bool "I2C 1"
+  endchoice
+
+  config SPM_I2C_NUM
+    int
+    default 0 if SPM_I2C_NUM_0
+    default 1 if SPM_I2C_NUM_1
+
+  config SPM_DEBUG
+    bool "Enable debug logging"
+    default n
+
+endmenu # Spektrum Device Configuration
